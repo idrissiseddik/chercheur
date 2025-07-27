@@ -26,7 +26,7 @@
       margin: 20px auto;
     }
     .card {
-      border: 1px solid #e3f2fd;
+      border: 3px solid #2196f3; /* Bordure bleue plus épaisse */
       border-radius: 12px;
       padding: 20px;
       background-color: #fff;
@@ -325,15 +325,13 @@
       const pays = prod.countries_fr || 'Inconnu';
 
       const div = document.createElement('div');
-      div.className = "col-md-6 col-lg-4"; // Utiliser une grille responsive
+      div.className = "col-md-6";
       div.innerHTML = `
         <div class="card">
-          <h5 class="product-name"><i class="fas fa-cube me-2"></i>${nom}</h5>
-          <div class="product-info">
-            <p><strong>Code :</strong> ${code}</p>
-            <p><strong>Marque :</strong> ${marque}</p>
-            <p><strong>Pays :</strong> ${pays}</p>
-          </div>
+          <h5 class="card-title product-name"><i class="fas fa-cube me-2"></i>${nom}</h5>
+          <p class="product-info"><strong>Code :</strong> ${code}</p>
+          <p class="product-info"><strong>Marque :</strong> ${marque}</p>
+          <p class="product-info"><strong>Pays :</strong> ${pays}</p>
           ${image ? `<img src="${image}" onclick="ouvrirImage('${image}', '${code}')" />` : ''}
           <svg id="barcode${i}"></svg>
         </div>
