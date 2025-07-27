@@ -13,7 +13,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f5f7fa;
       color: #333;
-      margin-bottom: 80px;
+      margin-bottom: 100px;
     }
     h2 { color: #2196f3; }
     .input-group { max-width: 600px; margin: 0 auto; }
@@ -80,7 +80,6 @@
       background-color: #0097a7;
     }
 
-    /* Style message plein écran */
     #overlayMessage {
       position: fixed;
       top: 0;
@@ -121,19 +120,50 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* Toast centré */
     .position-fixed {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 99999;
     }
+
+    /* Fond blanc pour le message défilant */
+    #fixedMessage {
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      padding: 6px 0;
+      font-weight: normal;
+      font-size: 1rem;
+      color: #0d47a1;
+      z-index: 1051;
+    }
+
+    #fixedMessage marquee {
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #0d47a1;
+    }
+
+    /* Fond jaune clair pour la barre de recherche */
+    .sticky-top {
+      background-color: #fff8dc !important;
+      z-index: 1050;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="sticky-top bg-white py-3 shadow-sm">
+  <div class="sticky-top">
+    <!-- Message défilant avec fond blanc -->
+    <div id="fixedMessage">
+      <marquee behavior="scroll" direction="right" scrollamount="4">
+        ما تنساش إلى بغيتي تكوبي الكود كليكيي على الصورة *** وفي البحث ديما دير سويفون
+      </marquee>
+    </div>
+
+    <!-- Barre de recherche avec fond jaune clair -->
     <h2 class="text-center mb-3"><i class="fas fa-barcode me-2"></i>Recherche de Produits</h2>
     <div class="input-group mb-3">
       <input type="text" id="searchInput" class="form-control" placeholder="Nom ou début du code à barre..." onkeyup="rechercherArticle()" />
@@ -144,7 +174,7 @@
   <div id="resultats" class="row gy-4 mt-4"></div>
   <div id="loading" class="text-center text-primary my-3" style="display: none;">Chargement...</div>
 
-  <nav class="mt-4">
+  <nav class="mt-4 mb-5">
     <ul class="pagination justify-content-center">
       <li class="page-item"><button class="page-link" onclick="changerPage('prev')">Précédent</button></li>
       <li class="page-item"><button class="page-link" onclick="changerPage('next')">Suivant</button></li>
@@ -180,7 +210,7 @@
   </div>
 </div>
 
-<!-- Message en darija plein écran -->
+<!-- Message plein écran -->
 <div id="overlayMessage">
   <div class="overlay-content">
     <p class="overlay-text">
@@ -190,7 +220,7 @@
   </div>
 </div>
 
-<!-- Toast au centre de l'écran -->
+<!-- Toast -->
 <div class="position-fixed top-50 start-50 translate-middle" style="z-index: 99999;">
   <div id="toastCode" class="toast align-items-center text-white bg-success border-0" role="alert">
     <div class="d-flex">
@@ -319,7 +349,6 @@
     });
   }
 
-  // Affichage message darija après 1 secondes
   window.addEventListener("load", () => {
     setTimeout(() => {
       document.getElementById("overlayMessage").style.display = "flex";
