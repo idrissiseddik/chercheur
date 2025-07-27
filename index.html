@@ -43,10 +43,17 @@
 
     .card img {
       width: 100%;
-      height: auto;
+      max-height: 150px;
+      object-fit: contain;
       border-radius: 10px;
       margin-bottom: 10px;
       cursor: pointer;
+    }
+
+    /* Centrer le code-barres sous l'image */
+    .card svg {
+      display: block;
+      margin: 0 auto;
     }
 
     .footer {
@@ -123,7 +130,6 @@
       z-index: 99999;
     }
 
-    /* Message défilant */
     #fixedMessage {
       background-color: #fff;
       padding: 6px 0;
@@ -138,7 +144,6 @@
       color: #0d47a1;
     }
 
-    /* Pagination stylée */
     .pagination .page-link {
       border: none;
       background: transparent;
@@ -155,17 +160,14 @@
 
 <div class="container">
   <div class="sticky-top bg-white">
-    <!-- Message défilant -->
     <div id="fixedMessage">
       <marquee behavior="scroll" direction="right" scrollamount="4">
         ما تنساش إلى بغيتي تكوبي الكود كليكيي على الصورة *** وفي البحث ديما دير سويفون
       </marquee>
     </div>
 
-    <!-- Titre -->
     <h2 class="text-center"><i class="fas fa-barcode me-2"></i>Recherche de Produits</h2>
 
-    <!-- Barre de recherche -->
     <div class="input-group mb-2">
       <input type="text" id="searchInput" class="form-control" placeholder="Nom ou début du code à barre..." onkeyup="rechercherArticle()" />
       <button class="btn btn-primary" onclick="rechercherArticle()"><i class="fas fa-search"></i></button>
@@ -177,7 +179,6 @@
   <div id="resultats" class="row gy-4 mt-3"></div>
   <div id="loading" class="text-center text-primary my-3" style="display: none;">Chargement...</div>
 
-  <!-- Pagination -->
   <nav class="mt-4 mb-5">
     <ul class="pagination justify-content-center">
       <li class="page-item">
@@ -194,12 +195,10 @@
   </nav>
 </div>
 
-<!-- Footer -->
 <div class="footer">
   Powered by <a href="https://mescreations.vercel.app" target="_blank">M.Seddik Elidrissi</a>
 </div>
 
-<!-- Modal Produit -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content bg-white">
@@ -223,7 +222,6 @@
   </div>
 </div>
 
-<!-- Message plein écran -->
 <div id="overlayMessage">
   <div class="overlay-content">
     <p class="overlay-text">
@@ -233,7 +231,6 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div class="position-fixed top-50 start-50 translate-middle" style="z-index: 99999;">
   <div id="toastCode" class="toast align-items-center text-white bg-success border-0" role="alert">
     <div class="d-flex">
@@ -244,7 +241,6 @@
   </div>
 </div>
 
-<!-- Scripts -->
 <script>
   let pageActuelle = 1;
   const resultatsParPage = 10;
@@ -363,7 +359,6 @@
     });
   }
 
-  // Message plein écran au démarrage
   window.addEventListener("load", () => {
     setTimeout(() => {
       document.getElementById("overlayMessage").style.display = "flex";
